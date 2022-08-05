@@ -59,8 +59,10 @@ public class Partida {
         Jugador j1 = new Jugador("Jugador 1");
         Jugador j2 = new Jugador("Jugador 2");
         Ronda round = new Ronda(j1,j2);
+        
         boolean j1PuntosLimite = j1.getNumeroVictorias() < nuevaPartida.getPuntosVictoria();
         boolean j2PuntosLimite = j2.getNumeroVictorias() < nuevaPartida.getPuntosVictoria();
+        
         while(j1PuntosLimite && j2PuntosLimite){
             System.out.println("***Round: " + nuevaPartida.getRondasJugadas() + "***");
             System.out.println("***Numero de empates: " + nuevaPartida.getRondasEmpatadas() + "***");
@@ -77,6 +79,9 @@ public class Partida {
                 nuevaPartida.rondasEmpatadas++;
             }
             nuevaPartida.rondasJugadas++;
+            
+            j1PuntosLimite = j1.getNumeroVictorias() < nuevaPartida.getPuntosVictoria();
+            j2PuntosLimite = j2.getNumeroVictorias() < nuevaPartida.getPuntosVictoria();
         }
         
         if (j1.getNumeroVictorias() == nuevaPartida.puntosVictoria){
