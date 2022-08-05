@@ -52,30 +52,36 @@ public class Partida {
     public void setRondaInicial(Ronda rondaInicial) {
         this.rondaInicial = rondaInicial;
     }
+    
+    public static void iniciarPartida(int puntosVictoria){
+        Partida nuevaPartida = new Partida(puntosVictoria);
 
+        Jugador j1 = new Jugador("Jugador 1");
+        Jugador j2 = new Jugador("Jugador 2");
+        Ronda round = new Ronda(j1,j2);
 
-    public static void main(String[] args) {
-        Jugador j1 = new Jugador("Julio");
-        Jugador j2 = new Jugador("Daniel");
-
-        Ronda round = new Ronda(j1, j2);
-
-        for (int i = 0; i < 10; i++) {
+        while(j1.getNumeroVictorias()<nuevaPartida.getPuntosVictoria() && j2.getNumeroVictorias()<nuevaPartida.getPuntosVictoria()){
+            System.out.println("***Round: " + nuevaPartida.getRondasJugadas() + "***");
+            System.out.println("***Numero de empates: " + nuevaPartida.getRondasEmpatadas() + "***");
+            
             j1.setJugada(j1.generarJugadaAleatoria());
             j2.setJugada(j2.generarJugadaAleatoria());
-            //System.out.println();
 
-            Jugador ganador = round.decidirGanador(j1, j2);
-
+            Jugador ganador = round.decidirGanador(j1,j2);
             round.setRoundWinner(ganador);
-
-            if (ganador != null) {
-                System.out.println("La ronda " + 5 + "la gana el jugador: "+ganador.getNombre());
-            } else {
-                System.out.println("Empate!!");
+            if(!ganador.getNombre().equals("Empate")){
+                System.out.println("El ganador es: "+ganador.getNombre());
+            }else{
+                System.out.println("Empate!!!");
+                nuevaPartida.rondasEmpatadas++;
             }
+            nuevaPartida.rondasJugadas++;
         }
-
-
+        
+        if (j1.getNumeroVictorias() == nuevaPartida.puntosVictoria){
+            System.out.println("\nEl ganador de la partida es: "+j1.getNombre());
+        } else {
+            System.out.println("\nEl ganador de la partida es: "+j2.getNombre());
+        }
     }
 }
