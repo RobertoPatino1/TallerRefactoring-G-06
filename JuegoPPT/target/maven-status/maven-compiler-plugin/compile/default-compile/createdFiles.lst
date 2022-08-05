@@ -1,0 +1,7 @@
+com\mycompany\juegoppt\model\Paper.class
+Partida.class
+com\mycompany\juegoppt\model\Rock.class
+com\mycompany\juegoppt\model\Choice.class
+com\mycompany\juegoppt\model\Scissors.class
+Jugador.class
+Ronda.class
